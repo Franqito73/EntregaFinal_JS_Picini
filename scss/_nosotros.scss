@@ -1,0 +1,33 @@
+/*NOSOTROS-INFO*/
+.info{
+    background-color: $color_info2; 
+    color: $color_fondo;
+    padding: 2em 1.5em;
+    margin: 1.5em 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    .info__titulo{
+        font-size: 2em; 
+        color: $color_fondo;
+        text-align: center;
+        margin-bottom: 1em; 
+        font-weight: bold;
+        border-bottom: 2px solid $color_info;
+        padding-bottom: 0.5em;
+    }
+    .info__texto{
+        font-size: 1rem; 
+        line-height: 1.6; 
+        color: $color_fondo; 
+        margin-bottom: 1.5em; 
+        text-align: center;
+        .resaltado{
+            background-color: $color_fondo;
+            padding: 0 5px;
+            color: $color_panel;   
+        }
+    }
+}

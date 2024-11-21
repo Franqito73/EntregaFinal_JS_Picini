@@ -1,0 +1,49 @@
+/*HEADER*/
+.header{
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 1.3em;
+    .header__navbar{
+        background-color: $color_nav;
+        .container-fluid{
+            .header__logo img {
+                transition: transform 0.3s ease;
+                &:hover{
+                    transform: scale(1.1) rotate(-10deg);
+                } 
+            }
+            .header__menu{
+                .header__nav{
+                    .header__nav-item{
+                        .header__nav-link{
+                            &:hover{
+                                background-color: $color_info;
+                                color: $color_fondo;
+                                border-radius: 10px;
+                            }
+                        }
+                        .header__dropdown-menu{
+                            .header__dropdown-item{
+                                &:hover{
+                                background-color: $color_info;
+                                color: $color_fondo;
+                                border-radius: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            .header__search{
+                    .header__search-button{
+                    color:$color_nav;
+                    border: 1px solid $color_panel;
+                    &:hover{
+                        background-color: $color_nav;
+                        color:$color_panel;
+                        }
+                    }
+                }    
+            }
+        }
+    }  
+}

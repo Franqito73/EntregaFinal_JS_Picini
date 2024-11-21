@@ -1,0 +1,48 @@
+/*PULSERAS Y COLLARES*/
+.productos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    .productos_pulsera-collar{
+        width: 250px;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        img{
+            width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+        }
+        h3{
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        p{
+            font-size: 16px;
+            color: #555;
+            font-weight: bold;
+        }
+        .productos_link {
+            text-decoration: none;
+            .productos_link-button {
+                padding: 10px 20px;
+                background-color: $color_panel;
+                color: $color_fondo;
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+                font-size: 1rem;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+                &:hover {
+                background-color: $color_info;
+                transform: translateY(-3px); 
+                }
+            }
+        }
+    }
+}

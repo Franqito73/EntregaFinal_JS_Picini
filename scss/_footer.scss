@@ -1,0 +1,31 @@
+/*FOOTER*/
+.footer{
+    margin-top: 20vh;
+    position: relative;
+    background-color: $color_panel;
+    color: $color_fondo;
+    padding: 20px;
+    text-align: center;
+    .footer__list{
+        list-style: none; 
+        padding: 0;
+        margin: 0 0 15px 0;
+        .footer__item{
+            display: inline-block; 
+            margin: 0 15px;
+            .footer__link{
+                color: $color_fondo; 
+                text-decoration: none;
+                transition: transform 0.3s ease, color 0.3s ease;
+                &:hover{
+                    transform: scale(1.1) rotate(-10deg);
+                    color: $color_info;
+                }
+            }
+        }
+    }
+    .footer__copyright{
+        margin-top: 10px; 
+        font-size: 0.9em; 
+    }
+}

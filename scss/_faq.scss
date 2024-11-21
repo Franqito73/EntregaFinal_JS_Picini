@@ -1,0 +1,50 @@
+/*PREGUNTAS*/
+.acordion {
+  background-color: $color_fondo;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  max-width: 800px;
+    .acordion_grupo {
+        margin-bottom: 1rem;
+        border: none;
+        .acordion_grupo-titulo{
+            background-color: $color_nav;
+            color: $color_panel;
+            border: 1px solid $color_nav;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            .acordion_grupo-boton{
+                color: $color_fondo;
+                font-size: 1.2rem;
+                font-weight: bold;
+                text-align: center;
+                padding: 1rem;
+                background-color: $color_panel;
+                border: none;
+                width: 100%;
+                border-radius: 8px;
+                transition: background-color 0.3s ease;
+                &:focus {
+                    outline: none;
+                }
+                &:not(.collapsed) {
+                    background-color: $color_info;
+                    color: $color_fondo;
+                  }
+
+            }
+        }
+        .acordion-collapsa{
+            border-radius: 0 0 8px 8px;
+            border: 1px solid $color_nav;
+            background-color: $color_info2;
+            .acordion_colapsa-texto{
+                padding: 1rem;
+                color: $color_fondo;
+                background-color: $color_info2;
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+/*INFO-INDEX*/
+.info__index{
+    font-family: Roboto;
+    margin: 80px;
+    text-align: center;
+    font-weight: bold;
+    .info__index-titulo{
+        font-size: 3em;
+        background-color: $color_panel;
+        color: $color_fondo;
+    }
+    .info__index-texto{
+        font-size: 2em;
+    }
+}

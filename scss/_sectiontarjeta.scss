@@ -1,0 +1,65 @@
+/*PRODUCTOS DESTACADOS*/
+.section_tarjeta{
+    margin: 50px;
+    .section_tarjeta-titulo{
+        font-family: Roboto;
+        font-size: 3em;
+        text-align: center;
+        font-weight: bold;
+    }
+    .section_tarjeta-card{
+        .section_tarjeta-column {
+            padding: 15px;
+            .section_tarjeta-cardin {
+                border: 1px solid $color_fondo;
+                border-radius: 8px; 
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+                transition: box-shadow 0.3s ease; 
+                &:hover {
+                    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+                }
+                .card-img-top {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+                .section_tarjeta-cardbody {
+                    text-align: center;
+                    padding: 20px; 
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 100%;
+        
+                    .card-title {
+                        font-size: 1.25rem;
+                        margin-bottom: 15px;
+                    }
+                    .card-text {
+                    font-size: 1rem;
+                    margin-bottom: 20px;
+                    color: $color_info;
+                    }
+                    .section_tarjeta-link { 
+                        text-decoration: none;
+                        .section_tarjeta-button {
+                            padding: 10px 20px;
+                            background-color: $color_panel;
+                            color: $color_fondo;
+                            border: none;
+                            border-radius: 25px;
+                            cursor: pointer;
+                            font-size: 1rem;
+                            transition: background-color 0.3s ease, transform 0.3s ease;
+                            &:hover {
+                              background-color: $color_info;
+                              transform: translateY(-3px); 
+                            }
+                        }
+                    }  
+                }  
+            }
+        }
+    }
+}
