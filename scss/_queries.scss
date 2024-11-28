@@ -1,0 +1,33 @@
+  /* MEDIA QUERY*/
+  @media (max-width: 768px){
+
+    .info__index{
+        padding: 1em;
+    } 
+
+    .info__index-titulo {
+        font-size: 2em; 
+        text-align: center;
+    }
+    
+    .info__index-texto {
+        font-size: .5em;
+        text-align: justify;
+    }
+      
+    
+    .contenedor{
+        flex-direction: column;
+        gap: 20px; 
+    }
+
+    .formulario {
+      margin-right: 0;
+      width: 100%; 
+    }
+
+    .mapa {
+      width: 100%; 
+    }
+
+  }

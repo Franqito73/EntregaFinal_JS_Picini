@@ -168,18 +168,25 @@
 
 /*INFO-INDEX*/
 .info__index {
-  font-family: Roboto;
-  margin: 80px;
-  text-align: center;
-  font-weight: bold;
+  margin: 2em 0;
+  padding: 2em;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .info__index .info__index-titulo {
-  font-size: 3em;
-  background-color: #000000;
-  color: #ffffff;
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 1em;
+  text-align: center;
 }
 .info__index .info__index-texto {
-  font-size: 2em;
+  font-size: 1.5em;
+  color: #313131;
+  font-weight: bold;
+  line-height: 1.6;
+  text-align: center;
 }
 
 /*BANNER*/
@@ -302,7 +309,7 @@
   transform: translateY(-3px);
 }
 
-/*CONTACTO-FORMULARIO*/
+/* CONTACTO - FORMULARIO */
 .contenedor {
   display: flex;
   flex-direction: row;
@@ -313,13 +320,14 @@
   max-width: 1200px;
 }
 .contenedor .formulario {
-  flex: 1;
-  margin-right: 2em;
   background-color: #f0f0f0;
   border-radius: 10px;
   padding: 2em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: Roboto;
+  margin-right: 2em;
+  width: 100%;
+  max-width: 600px;
 }
 .contenedor .formulario .formulario__titulo {
   font-size: 1.3em;
@@ -452,6 +460,32 @@
   padding: 1rem;
   color: #ffffff;
   background-color: #313131;
+}
+
+/* MEDIA QUERY*/
+@media (max-width: 768px) {
+  .info__index {
+    padding: 1em;
+  }
+  .info__index-titulo {
+    font-size: 2em;
+    text-align: center;
+  }
+  .info__index-texto {
+    font-size: 0.5em;
+    text-align: justify;
+  }
+  .contenedor {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .formulario {
+    margin-right: 0;
+    width: 100%;
+  }
+  .mapa {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=estilos.css.map */
