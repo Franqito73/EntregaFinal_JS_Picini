@@ -1,24 +1,26 @@
 /*INFO-INDEX*/
 .info__index {
-    margin: 2em 0;
-    padding: 2em;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 2em 0;
+  padding: 2em;
+  background-color: $color_fondo;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
-    .info__index-titulo {
-      font-size: 2.2em; 
-      font-weight: bold;
-      color: $color_panel;
-      margin-bottom: 1em;
-      text-align: center;
-    }
+  .info__index-titulo {
+    font-size: 2.2em; 
+    font-weight: bold;
+    background-color: $color_panel;
+    color: $color_fondo;
+    margin-bottom: 1em;
+    text-align: center;
+    padding: 10px;
+  }
   
-    .info__index-texto {
-      font-size: 1.5em; 
-      color: $color_info2;
-      font-weight: bold;
-      line-height: 1.6;
-      text-align: center;
-    }
+  .info__index-texto {
+    font-size: 1.5em; 
+    color: $color_info2;
+    font-weight: bold;
+    line-height: 1.6;
+    text-align: center;
+  }
 }

@@ -1,126 +1,126 @@
-.modal {
-  display: none;
+#modalCarrito {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9999;
+  display: none;
   justify-content: center;
   align-items: center;
-    &.active {
+  z-index: 9999;
+
+  &.active {
     display: flex;
-    }
-      .modal-content {
-        background-color: $color_fondo;
-        padding: 20px;
-      border-radius: 8px;
-      width: 80%;
-      max-width: 600px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      position: relative;
+  }
 
-        h2 {
-          text-align: center;
-          color: $color_panel;
-        }
+  .modal-content {
+    background-color:$color_fondo;
+    width: 80%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  
 
-        .modal-close {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          font-size: 30px;
-          background-color: $color_panel;
-          color: $color_fondo;
-          cursor: pointer;
-          z-index: 1000; 
-        }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 30px;
+      color: $color_panel;
+      cursor: pointer;
 
-        #productosCarrito {
-          margin-top: 20px;
-          display: flex;
-          flex-direction: column;
-          max-height: 400px;  
-          overflow-y: auto;
-
-        .producto {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 10px 0;
-          border-bottom: 1px solid $color_info;
-        }
-
-        img {
-          width: 60px;
-          height: 60px;
-          margin-right: 10px;
-        }
-
-        h3 {
-          font-size: 14px;
-          color: $color_panel;
-        }
-
-        p {
-          font-size: 14px;
-          color: $color_info;
-        }
-
-        .botonesEliminar {
-          background-color: $color_panel;
-          border: none;
-          color: $color_fondo;
-          padding: 5px 10px;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 12px;
-
-            &:hover {
-            background-color: $color_info;
-            }
-          }
-        }
+      &:hover {
+      color: $color_fondo;
       }
+    }
 
-        .modal-footer {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 20px;
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  } 
+}
 
-          p {
-            color: $color_info;
-            font-weight: bold;
-          }
 
-          .btn-comprar {
-            background-color: $color_panel;
-            color: $color_fondo;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
+#productosCarrito {
+  .producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 
-              &:hover {
-                background-color: darken($color_panel, 10%);
-              }
-          }
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
 
-          #vaciarCarrito {
-            background-color: $color_info2;
-            color: $color_fondo;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
+    h3 {
+      font-size: 14px;
+      margin: 0;
+    }
 
-              &:hover {
-                background-color: darken($color_info2, 10%);
-              }
-            }
-          }
+    p {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .botonesEliminar {
+      background-color: $color_panel;
+      color: $color_fondo;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: $color_info;
+      }
+    }
+  }
+}
+
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  
+  p#total {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  #vaciarCarrito {
+    background-color: $color_panel;
+    color: $color_fondo;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: $color_info;
+    }
+  }
+
+  #comprar {
+    background-color: $color_panel;
+    color: $color_fondo;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: $color_info;
+    }
+  }
 }

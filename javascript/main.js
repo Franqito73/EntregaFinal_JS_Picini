@@ -16,7 +16,6 @@ document.getElementById("vaciarCarrito").addEventListener("click", () => {
     vaciarCarrito();
 });
 
-
 const Carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const productosBijou = [
@@ -27,7 +26,11 @@ const productosBijou = [
     { id: 5, nombre: "Collar Multi", categoria: "Collares", img: "../img/Collar_Multi_5.jpg", precio: 9000 },
     { id: 6, nombre: "Collar Totem", categoria: "Collares", img: "../img/Collar_Totem_6.jpg", precio: 8000 },
     { id: 7, nombre: "Collar Varios", categoria: "Collares", img: "../img/Collar_Varios_7.jpg", precio: 9000 },
-    { id: 8, nombre: "Collar Arena", categoria: "Collares", img: "../img/Collar_Arena_8.jpg", precio: 8000 }
+    { id: 8, nombre: "Collar Arena", categoria: "Collares", img: "../img/Collar_Arena_8.jpg", precio: 8000 },
+    { id: 9, nombre: "Pulsera Com", categoria: "Pulseras", img: "../img/Pulsera_Com_1.jpg", precio: 5000 },
+    { id: 10, nombre: "Pulsera Esla", categoria: "Pulseras", img: "../img/Pulsera_Esla_2.jpg", precio: 4000 },
+    { id: 11, nombre: "Pulsera Dije", categoria: "Pulseras", img: "../img/Pulsera_Dije_3.jpg", precio: 5000 },
+    { id: 12, nombre: "Pulsera Arena", categoria: "Pulseras", img: "../img/Collar_Arena_8.jpg", precio: 8000 },
 ];
 
 const productosCarrito = document.getElementById("productosCarrito");
@@ -56,7 +59,6 @@ function actualizarCarrito() {
     agregarEventosEliminar();
 }
 
-
 function agregarAlCarrito(idProducto) {
     const producto = productosBijou.find(p => p.id == idProducto);
     let productoEnCarrito = Carrito.find(p => p.id == producto.id);
@@ -75,7 +77,6 @@ function agregarAlCarrito(idProducto) {
 
     actualizarCarrito();
 }
-
 
 function agregarEventosEliminar() {
     const botonesEliminar = document.querySelectorAll(".botonesEliminar");
@@ -99,8 +100,7 @@ function agregarEventosEliminar() {
 }
 
 function vaciarCarrito() {
-    Carrito.length = 0; 
-    
+    Carrito.length = 0;
     actualizarCarrito();
 };
 
@@ -110,6 +110,5 @@ document.querySelectorAll(".productos_link-button").forEach(boton => {
         agregarAlCarrito(idProducto);
     });
 });
-
 
 actualizarCarrito();

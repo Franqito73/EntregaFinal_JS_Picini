@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name= "description" content="Conoce la historia de nuestra bijouterie artesanal. Creación de piezas únicas y exclusivas, hechas a mano con amor y materiales de alta calidad. ¡Somos pasión por el diseño y la creatividad!">
+    <meta name="keywords" content="acerca de nosotros, que es ina, nuestro objetivo, bijouterie artesanal, joyas hechas a mano, joyería artesanal, joyas únicas, bisutería artesanal, joyas personalizadas, bisutería hecha a mano, diseño de joyas, joyería exclusiva, joyas con piedras naturales, bisutería original, bijouterie con estilo, accesorios artesanales">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="shortcut icon" href="../img/icono_pestaña.jpg" type="image/x-icon">
-    <title>💎Nosotros</title>
+    <title>💎INA.BsAs - Sobre Nosotros</title>
 </head>
 <body>
 <!-------------------------------------------- Barra de navegación ----------------------------------------------------->
@@ -40,9 +42,10 @@
             <a class="header__nav-link nav-link" href="faq.html">Preguntas Frecuentes</a>
           </li>
         </ul>
-        <form class="header__search d-flex" role="search">
-          <button class="header__search-button btn btn-outline-success" type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
-        </form>
+        <div id="carritoIcon" class="carrito-icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="carritoCount">0</span> 
+        </div>
       </div>
     </div>
   </nav>
@@ -58,6 +61,19 @@
   <p class="info__texto">Nuestro propósito principal es llevar nuestras piezas de collares y pulseras a cada cliente de una manera única, auténtica y especial. Creemos que los accesorios no solo son elementos de moda, sino una forma de expresión personal. Cada pieza que creamos está pensada para realzar la personalidad de quienes las usan, y por eso, nos esforzamos por ofrecer productos que sean tanto hermosos como significativos.<br>Además, entendemos que cada cliente tiene gustos y necesidades diferentes, por lo que nos enfocamos en la personalización. Queremos que cada pieza sea única, adaptada a la persona que la va a llevar. Por eso, nos dedicamos a conocer a nuestros clientes, a sus preferencias, y nos aseguramos de que cada entrega sea una experiencia especial.<br><span class="resaltado">Nuestro propósito es claro:</span> crear productos que no solo adornan, sino que también transmiten emociones y generan una conexión auténtica con quienes los eligen.</p>
 </section>
 
+<!-------------------------------------------------Modal Carrito de Compras------------------------------------------>
+<div class="modal" id="modalCarrito">
+  <div class="modal-content">
+    <span class="modal-close" id="modalClose">&times;</span>
+    <h2>Tu Carrito</h2>
+    <div id="productosCarrito"></div>
+    <div class="modal-footer">
+      <p id="total">Total: $0</p>
+      <button id="vaciarCarrito" class="btn-vaciar">Vaciar carrito</button>
+      <button id="comprar" class="btn-comprar">Comprar</button>
+    </div>
+  </div>
+</div>
 
 <!------------------------------------------ Pie de página ------------------------------------------------->
 
@@ -71,5 +87,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="../javascript/main.js"></script>
 </body>
 </html>

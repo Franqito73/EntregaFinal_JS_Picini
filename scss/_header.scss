@@ -33,16 +33,33 @@
                         }
                     }
                 }
-            .header__search{
-                    .header__search-button{
-                    color:$color_nav;
-                    border: 1px solid $color_panel;
-                    &:hover{
-                        background-color: $color_nav;
-                        color:$color_panel;
-                        }
+                .carrito-icon {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    cursor: pointer;
+                    font-size: 28px;
+                  
+                    i {
+                      font-size: 28px;
                     }
-                }    
+                  
+                    #carritoCount {
+                      position: absolute;
+                      top: -5px;
+                      right: -5px;
+                      background-color:$color_fondo;
+                      color: $color_panel;
+                      font-size: 14px;
+                      width: 18px;
+                      height: 18px;
+                      border-radius: 50%;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      font-weight: bold;
+                    }
+                }          
             }
         }
     }  
