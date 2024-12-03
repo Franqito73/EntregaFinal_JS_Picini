@@ -1,148 +1,115 @@
-// const agregarBolsaProductoBoton = document.querySelectorAll('.productos_link-button');
-// agregarBolsaProductoBoton.forEach((addToCartButton) => {
-//     addToCartButton.addEventListener('click', addToCartClicked);
-// });
-
-// const shoppingCartItemContainer = document.querySelector(
-//     '.header__search-button'
-// );
-
-// function addToCartClicked(event) {
-//     const button = event.target;
-//     const item = button.closest('.productos_pulsera-collar');
-
-//     const itemTitle = item.querySelector('.itemTitle').textContent;
-//     const itemPrice = item.querySelector('.itemPrice').textContent;
-//     const itemImage = item.querySelector('.itemImage') .src;
-    
-//     addItemToShoppingCart(itemTitle, itemPrice, itemImage);
-// }
-
-
-// Array para almacenar los productos del carrito (inicialmente vacío o cargado desde localStorage)
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// Función para agregar productos al carrito
-function addToCart(id, name, price, imageUrl) {
-    const productIndex = cart.findIndex(item => item.id === id);
-    
-    if (productIndex === -1) {
-        // Si el producto no está en el carrito, lo agregamos
-        const product = { id, name, price, imageUrl, quantity: 1 };
-        cart.push(product);
-    } else {
-        // Si el producto ya está en el carrito, incrementamos la cantidad
-        cart[productIndex].quantity++;
-    }
-    
-    saveCartToLocalStorage();
-    updateCartDisplay();
-}
-
-// Función para guardar el carrito en localStorage
-function saveCartToLocalStorage() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Función para actualizar la visualización del carrito
-function updateCartDisplay() {
-    const cartList = document.getElementById('cartList');
-    const totalPrice = document.getElementById('totalPrice');
-    
-    // Limpiar la lista de productos en el carrito
-    cartList.innerHTML = '';
-
-    // Agregar productos al carrito en la interfaz
-    let total = 0;
-    cart.forEach(product => {
-        const li = document.createElement('li');
-        li.classList.add('cart-item');
-        
-        // Crear el contenido del producto
-        li.innerHTML = `
-            <div class="cart-item-info">
-                <img src="${product.imageUrl}" alt="${product.name}" class="cart-item-image">
-                <span class="cart-item-name">${product.name}</span>
-                <span class="cart-item-price">$${product.price}</span>
-                <span class="cart-item-quantity">Cantidad: <span class="quantity">${product.quantity}</span></span>
-                <button class="btn btn-primary btn-sm increase-quantity">+</button>
-                <button class="btn btn-secondary btn-sm decrease-quantity">-</button>
-            </div>
-        `;
-        
-        // Agregar la fila del producto al carrito
-        cartList.appendChild(li);
-
-        // Calcular el total
-        total += product.price * product.quantity;
-
-        // Añadir eventos a los botones de aumentar y disminuir cantidad
-        li.querySelector('.increase-quantity').addEventListener('click', () => changeQuantity(product.id, 1));
-        li.querySelector('.decrease-quantity').addEventListener('click', () => changeQuantity(product.id, -1));
-    });
-
-    // Actualizar el precio total
-    totalPrice.textContent = `Total: $${total}`;
-}
-
-// Función para cambiar la cantidad de un producto en el carrito
-function changeQuantity(id, change) {
-    const productIndex = cart.findIndex(item => item.id === id);
-    
-    if (productIndex !== -1) {
-        // Cambiar la cantidad
-        cart[productIndex].quantity += change;
-        
-        // Si la cantidad es menor que 1, eliminar el producto del carrito
-        if (cart[productIndex].quantity <= 0) {
-            cart.splice(productIndex, 1);
-        }
-
-        // Actualizar el localStorage y la interfaz
-        saveCartToLocalStorage();
-        updateCartDisplay();
-    }
-}
-
-// Función para vaciar el carrito
-function clearCart() {
-    cart = [];
-    saveCartToLocalStorage();
-    updateCartDisplay();
-}
-
-// Función para manejar el clic en los botones de "Agregar al carrito"
-function handleAddToCart(event) {
-    const button = event.target;
-    const product = button.closest('.productos_pulsera-collar'); // Encontramos el contenedor del producto
-
-    const id = product.querySelector('.itemTitle').textContent; // Usamos el nombre del producto como ID (por ejemplo, si el nombre es único)
-    const name = product.querySelector('.itemTitle').textContent; 
-    const price = parseFloat(product.querySelector('.itemPrice').textContent.replace('$', ''));
-    const imageUrl = product.querySelector('.itemImage').src;
-
-    addToCart(id, name, price, imageUrl);
-}
-
-// Función para abrir el modal del carrito cuando se hace clic en el icono de la bolsa
-function openCartModal() {
-    updateCartDisplay(); // Asegurarse de que el carrito está actualizado antes de abrir el modal
-    const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
-    cartModal.show();
-}
-
-// Agregar un event listener a los botones de agregar al carrito
-const addToCartButtons = document.querySelectorAll('.productos_link-button');
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', handleAddToCart);
+document.getElementById("carritoIcon").addEventListener("click", () => {
+    document.getElementById("modalCarrito").classList.toggle("active");
 });
 
-// Agregar un event listener para abrir el modal al hacer clic en el ícono de la bolsa de compras
-const cartButton = document.querySelector('.header__search-button');
-cartButton.addEventListener('click', openCartModal);
+document.getElementById("modalClose").addEventListener("click", () => {
+    document.getElementById("modalCarrito").classList.remove("active");
+});
 
-// Agregar un event listener para vaciar el carrito
-document.getElementById('clearCartButton').addEventListener('click', clearCart);
+window.addEventListener("click", (event) => {
+    if (event.target === document.getElementById("modalCarrito")) {
+        document.getElementById("modalCarrito").classList.remove("active");
+    }
+});
 
-// Cargar el carrito al cargar la página si hay productos en el localStorage
-document.addEventListener('DOMContentLoaded', updateCartDisplay);
+document.getElementById("vaciarCarrito").addEventListener("click", () => {
+    vaciarCarrito();
+});
+
+
+const Carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+const productosBijou = [
+    { id: 1, nombre: "Collar Plata", categoria: "Collares", img: "../img/Collar_Plata_1.jpg", precio: 9000 },
+    { id: 2, nombre: "Collar Dorado", categoria: "Collares", img: "../img/Collar_Dorado_2.jpg", precio: 8000 },
+    { id: 3, nombre: "Collar Gris", categoria: "Collares", img: "../img/Collar_Gris_3.jpg", precio: 9000 },
+    { id: 4, nombre: "Collar Choker", categoria: "Collares", img: "../img/Collar_Choker_4.jpg", precio: 8000 },
+    { id: 5, nombre: "Collar Multi", categoria: "Collares", img: "../img/Collar_Multi_5.jpg", precio: 9000 },
+    { id: 6, nombre: "Collar Totem", categoria: "Collares", img: "../img/Collar_Totem_6.jpg", precio: 8000 },
+    { id: 7, nombre: "Collar Varios", categoria: "Collares", img: "../img/Collar_Varios_7.jpg", precio: 9000 },
+    { id: 8, nombre: "Collar Arena", categoria: "Collares", img: "../img/Collar_Arena_8.jpg", precio: 8000 }
+];
+
+const productosCarrito = document.getElementById("productosCarrito");
+const total = document.getElementById("total");
+const carritoIcon = document.getElementById("carritoIcon");
+
+function actualizarCarrito() {
+    productosCarrito.innerHTML = "";
+
+    Carrito.forEach(el => {
+        productosCarrito.innerHTML += `
+            <div class="producto">
+                <img src="${el.img}" alt="${el.nombre}" />
+                <h3>${el.nombre}</h3>
+                <p>Precio: $<span>${el.precio}</span></p>
+                <p>Cantidad: ${el.cantidad}</p>
+                <button class="botonesEliminar">Eliminar</button>
+            </div>
+        `;
+    });
+
+    total.innerText = "Total: $" + Carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0);
+    carritoIcon.querySelector("#carritoCount").innerText = Carrito.reduce((acc, el) => acc + el.cantidad, 0);
+    localStorage.setItem("carrito", JSON.stringify(Carrito));
+
+    agregarEventosEliminar();
+}
+
+
+function agregarAlCarrito(idProducto) {
+    const producto = productosBijou.find(p => p.id == idProducto);
+    let productoEnCarrito = Carrito.find(p => p.id == producto.id);
+
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+    } else {
+        Carrito.push({
+            id: producto.id,
+            nombre: producto.nombre,
+            img: producto.img,
+            precio: producto.precio,
+            cantidad: 1
+        });
+    }
+
+    actualizarCarrito();
+}
+
+
+function agregarEventosEliminar() {
+    const botonesEliminar = document.querySelectorAll(".botonesEliminar");
+
+    botonesEliminar.forEach(boton => {
+        boton.addEventListener("click", (evento) => {
+            const productoElement = evento.target.closest(".producto");
+            const productoNombre = productoElement.querySelector("h3").textContent;
+            let productoAEliminar = Carrito.find(el => el.nombre === productoNombre);
+
+            if (productoAEliminar.cantidad === 1) {
+                const index = Carrito.indexOf(productoAEliminar);
+                Carrito.splice(index, 1);
+            } else {
+                productoAEliminar.cantidad--;
+            }
+
+            actualizarCarrito();
+        });
+    });
+}
+
+function vaciarCarrito() {
+    Carrito.length = 0; 
+    
+    actualizarCarrito();
+};
+
+document.querySelectorAll(".productos_link-button").forEach(boton => {
+    boton.addEventListener("click", () => {
+        const idProducto = boton.closest(".productos_pulsera-collar").getAttribute("data-id");
+        agregarAlCarrito(idProducto);
+    });
+});
+
+
+actualizarCarrito();

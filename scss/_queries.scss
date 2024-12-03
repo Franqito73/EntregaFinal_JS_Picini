@@ -1,33 +1,67 @@
   /* MEDIA QUERY*/
-  @media (max-width: 768px){
+@media (max-width: 768px){
 
-    .info__index{
-        padding: 1em;
-    } 
+  .info__index{
+    padding: 1em;
+  } 
 
-    .info__index-titulo {
-        font-size: 2em; 
-        text-align: center;
-    }
+  .info__index-titulo {
+    font-size: 2em; 
+    text-align: center;
+  }
     
-    .info__index-texto {
-        font-size: .5em;
-        text-align: justify;
-    }
+  .info__index-texto {
+    font-size: .5em;
+    text-align: justify;
+  }
       
     
-    .contenedor{
-        flex-direction: column;
-        gap: 20px; 
-    }
-
-    .formulario {
-      margin-right: 0;
-      width: 100%; 
-    }
-
-    .mapa {
-      width: 100%; 
-    }
-
+  .contenedor{
+    flex-direction: column;
+    gap: 20px; 
   }
+
+  .formulario {
+    margin-right: 0;
+    width: 100%; 
+  }
+
+  .mapa {
+    width: 100%; 
+  }
+
+}
+@media screen and (max-width: 480px) {
+  .modal-content {
+    width: 95%;  
+    padding: 10px;
+  }
+
+  .producto {
+    padding: 5px 0;
+  }
+
+  img {
+    width: 40px;  
+    height: 40px;
+  }
+
+  .modal-close {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 16px;  
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-comprar, #vaciarCarrito {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}
