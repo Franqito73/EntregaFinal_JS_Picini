@@ -1,67 +1,61 @@
-  /* MEDIA QUERY*/
-@media (max-width: 768px){
+/* MEDIA QUERIES*/
 
-  .info__index{
-    padding: 1em;
-  } 
+@media (max-width: 992px){
+  // HEADER
+  .header{
+    .header__navbar{
+      .container-fluid{
+        .header__logo{
+          img{
+            width: 80px;
+          }
+        }
+      }
+      .header__menu{
+        .header__nav{
+          .header__nav-item{
+            .header__nav-link{
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+  // NOSOTROS
+  .info{
+  margin:20px;
+  }
 
-  .info__index-titulo {
-    font-size: 2em; 
-    text-align: center;
-  }
-    
-  .info__index-texto {
-    font-size: .5em;
-    text-align: justify;
-  }
-      
-    
+  // FORMULARIO Y MAPA
+
   .contenedor{
     flex-direction: column;
-    gap: 20px; 
-  }
-
-  .formulario {
-    margin-right: 0;
-    width: 100%; 
-  }
-
-  .mapa {
-    width: 100%; 
-  }
-
-}
-@media screen and (max-width: 480px) {
-  .modal-content {
-    width: 95%;  
-    padding: 10px;
-  }
-
-  .producto {
-    padding: 5px 0;
-  }
-
-  img {
-    width: 40px;  
-    height: 40px;
-  }
-
-  .modal-close {
-    font-size: 25px;
-  }
-
-  h2 {
-    font-size: 16px;  
-  }
-
-  .modal-footer {
-    flex-direction: column;
+    gap: 20px;
     align-items: center;
+    .formulario{
+      width: 100%;
+    }
+    .mapa{
+      width: 100%;
+    }
   }
+}
 
-  .btn-comprar, #vaciarCarrito {
-    width: 100%;
-    margin-top: 10px;
-    font-size: 14px;
+@media (max-width: 576px){
+  // FORMULARIO Y MAPA
+  .contenedor{
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin: 20px;
+    
+    .formulario{
+      width: 100%;
+    }
+    .mapa{
+      width: 100%;
+      align-items: center;
+    }
   }
 }

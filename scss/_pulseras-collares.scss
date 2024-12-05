@@ -9,7 +9,7 @@
         width: 250px;
         padding: 10px;
         text-align: center;
-        border: 1px solid #ddd;
+        border: 1px solid $color_info;
         border-radius: 8px;
         overflow: hidden;
         img{
@@ -24,7 +24,7 @@
         }
         p{
             font-size: 16px;
-            color: #555;
+            color: $color_info;
             font-weight: bold;
         }
         .productos_link {

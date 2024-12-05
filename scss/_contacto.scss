@@ -9,7 +9,7 @@
   max-width: 1200px;
   
   .formulario {
-    background-color: #f0f0f0;
+    background-color: $color_fondo;
     border-radius: 10px;
     padding: 2em;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -21,9 +21,9 @@
     .formulario__titulo {
       font-size: 1.3em;
       font-weight: bold;
-      color: #ffffff;
+      color: $color_fondo;
       text-align: center;
-      background-color: #000000;
+      background-color: $color_panel;
       border-radius: 8px;
       margin-bottom: 1rem;
     }
@@ -34,7 +34,7 @@
       .formulario__etiqueta {
         display: block;
         font-size: 16px;
-        color: #333;
+        color: $color_info;
         margin-bottom: 0.5em;
       }
   
@@ -42,10 +42,10 @@
         width: 100%;
         padding: 10px;
         font-size: 16px;
-        border: 2px solid #ccc;
+        border: 2px solid $color_nav;
         border-radius: 4px;
-        background-color: #f9f9f9;
-        color: #333;
+        background-color: $color_nav;
+        color:$color_info;
       }
   
         .formulario__campo--mensaje {
@@ -55,8 +55,8 @@
     }
   
     .formulario__boton {
-      background-color: #000;
-      color: #fff;
+      background-color: $color_panel;
+      color: $color_fondo;
       padding: 12px 20px;
       border: none;
       border-radius: 4px;
@@ -66,14 +66,14 @@
       width: 100%;
   
       &:hover {
-        background-color: #808080;
-        color: #000;
+        background-color: $color_nav;
+        color: $color_panel;
       }
   
       &:active {
-      background-color: #fff;
-      color: #000;
-      border: 2px solid #000;
+      background-color: $color_fondo;
+      color: $color_panel;
+      border: 2px solid $color_panel;
       }
     }
   }
