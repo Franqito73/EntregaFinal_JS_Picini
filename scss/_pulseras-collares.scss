@@ -1,48 +1,58 @@
-/*PULSERAS Y COLLARES*/
-.productos{
-    display: flex;
-    flex-wrap: wrap;
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    justify-content: center;
     padding: 20px;
-    .productos_pulsera-collar{
-        width: 250px;
-        padding: 10px;
-        text-align: center;
-        border: 1px solid $color_info;
-        border-radius: 8px;
-        overflow: hidden;
-        img{
-            width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  
+    .producto {
+      background-color: $color-fondo;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: translateY(-5px);
+      }
+  
+      img {
+        width: 100%;
         height: auto;
-        border-radius: 8px;
-        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+      }
+  
+      h3 {
+        margin: 10px 0;
+        padding: 0 10px;
+        color: $color-panel;
+        text-align: center;
+      }
+  
+      p {
+        margin: 0 0 15px 10px;
+        color: $color-panel;
+        text-align: center;
+      }
+  
+      .btn-agregar {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: $color-panel;
+        color: #fff;
+        border: none;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: $color-info;
         }
-        h3{
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        p{
-            font-size: 16px;
-            color: $color_info;
-            font-weight: bold;
-        }
-        .productos_link {
-            text-decoration: none;
-            .productos_link-button {
-                padding: 10px 20px;
-                background-color: $color_panel;
-                color: $color_fondo;
-                border: none;
-                border-radius: 25px;
-                cursor: pointer;
-                font-size: 1rem;
-                transition: background-color 0.3s ease, transform 0.3s ease;
-                &:hover {
-                background-color: $color_info;
-                transform: translateY(-3px); 
-                }
-            }
-        }
+      }
     }
-}
+  }

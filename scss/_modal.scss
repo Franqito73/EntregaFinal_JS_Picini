@@ -1,129 +1,130 @@
-// MODAL
-#modalCarrito {
+// Modal
+.modal-container {
+  display: none; 
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); 
   align-items: center;
-  z-index: 9999;
-
-  &.active {
-    display: flex;
-  }
+  justify-content: center;
+  z-index: 1000;
 
   .modal-content {
-    background-color:$color_fondo;
-    width: 80%;
-    max-width: 500px;
+    background-color: $color-fondo;
     padding: 20px;
     border-radius: 10px;
-    overflow: hidden;
+    width: 400px;
+    max-width: 90%;
     position: relative;
-  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 80vh; 
+    overflow-y: auto;
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
     .modal-close {
       position: absolute;
       top: 10px;
       right: 10px;
-      font-size: 30px;
-      color: $color_panel;
+      font-size: 24px;
+      font-weight: bold;
       cursor: pointer;
-
-      &:hover {
-      color: $color_fondo;
-      }
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-  } 
-}
-
-//PRODUCTOS MODAL
-
-#productosCarrito {
-  .producto {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-
-    img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      margin-right: 10px;
-    }
-
-    h3 {
-      font-size: 14px;
-      margin: 0;
-    }
-
-    p {
-      font-size: 12px;
-      margin: 0;
-    }
-
-    .botonesEliminar {
-      background-color: $color_panel;
-      color: $color_fondo;
-      padding: 5px 10px;
+      background-color: transparent;
       border: none;
-      cursor: pointer;
-      font-size: 12px;
-      border-radius: 5px;
+      color: $color-panel;
 
       &:hover {
-        background-color: $color_info;
+        color: $color-info;
+      }
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      align-items: center;
+
+      button {
+        padding: 10px 20px;
+        background-color: $color-panel;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $color-info;
+        }
+      }
+    }
+  }
+
+
+#carritoItems {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+
+    .carrito-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      align-items: center;
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+      }
+
+      .item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        h3 {
+          margin: 0;
+        }
+
+        p {
+          margin: 0;
+          color: #555;
+        }
+      }
+
+      .btn-restar,
+      .btn-agregar,
+      .btn-quitar {
+        padding: 8px 15px;
+        margin: 0 5px;
+        background-color: $color-panel;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $color-info;
+        }
       }
     }
   }
 }
 
-//MODAL FOOTER
-
-.modal-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  
-  p#total {
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  #vaciarCarrito {
-    background-color: $color_panel;
-    color: $color_fondo;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-
-    &:hover {
-      background-color: $color_info;
-    }
-  }
-
-  #comprar {
-    background-color: $color_panel;
-    color: $color_fondo;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-
-    &:hover {
-      background-color: $color_info;
-    }
-  }
+/* Clase personalizada de SweetAlert2 */
+.swal-popup {
+  z-index: 9999; 
 }

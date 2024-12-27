@@ -1,114 +1,257 @@
-document.getElementById("carritoIcon").addEventListener("click", () => {
-    document.getElementById("modalCarrito").classList.toggle("active");
-});
+document.addEventListener("DOMContentLoaded", function() {
+  let carrito = [];
 
-document.getElementById("modalClose").addEventListener("click", () => {
-    document.getElementById("modalCarrito").classList.remove("active");
-});
+  const carritoIcon = document.getElementById('carritoIcon');
+  const carritoCount = document.getElementById('carritoCount');
+  const modalContainer = document.getElementById('modalContainer');
+  const modalCloseButton = document.querySelector('.modal-close'); 
+  const tarjetaContainer = document.getElementById('tarjeta');
+  console.log(modalCloseButton);
+  let filter = '';
 
-window.addEventListener("click", (event) => {
-    if (event.target === document.getElementById("modalCarrito")) {
-        document.getElementById("modalCarrito").classList.remove("active");
-    }
-});
+ 
+  if (document.location.pathname.includes('collares.html')) {
+    filter = 'collar';
+  } else if (document.location.pathname.includes('pulseras.html')) {
+    filter = 'pulsera';
+  }
 
-document.getElementById("vaciarCarrito").addEventListener("click", () => {
-    vaciarCarrito();
-});
 
-const Carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  fetch('../data.json')
+    .then(response => response.json())
+    .then(productos => {
+      const productosFiltrados = productos.filter(producto => producto.categoria === filter);
 
-const productosBijou = [
-    { id: 1, nombre: "Collar Plata", categoria: "Collares", img: "../img/Collar_Plata_1.jpg", precio: 9000 },
-    { id: 2, nombre: "Collar Dorado", categoria: "Collares", img: "../img/Collar_Dorado_2.jpg", precio: 8000 },
-    { id: 3, nombre: "Collar Gris", categoria: "Collares", img: "../img/Collar_Gris_3.jpg", precio: 9000 },
-    { id: 4, nombre: "Collar Choker", categoria: "Collares", img: "../img/Collar_Choker_4.jpg", precio: 8000 },
-    { id: 5, nombre: "Collar Multi", categoria: "Collares", img: "../img/Collar_Multi_5.jpg", precio: 9000 },
-    { id: 6, nombre: "Collar Totem", categoria: "Collares", img: "../img/Collar_Totem_6.jpg", precio: 8000 },
-    { id: 7, nombre: "Collar Varios", categoria: "Collares", img: "../img/Collar_Varios_7.jpg", precio: 9000 },
-    { id: 8, nombre: "Collar Arena", categoria: "Collares", img: "../img/Collar_Arena_8.jpg", precio: 8000 },
-    { id: 9, nombre: "Pulsera Com", categoria: "Pulseras", img: "../img/Pulsera_Com_1.jpg", precio: 5000 },
-    { id: 10, nombre: "Pulsera Esla", categoria: "Pulseras", img: "../img/Pulsera_Esla_2.jpg", precio: 4000 },
-    { id: 11, nombre: "Pulsera Dije", categoria: "Pulseras", img: "../img/Pulsera_Dije_3.jpg", precio: 5000 },
-    { id: 12, nombre: "Pulsera Arena", categoria: "Pulseras", img: "../img/Collar_Arena_8.jpg", precio: 8000 },
-];
-
-const productosCarrito = document.getElementById("productosCarrito");
-const total = document.getElementById("total");
-const carritoIcon = document.getElementById("carritoIcon");
-
-function actualizarCarrito() {
-    productosCarrito.innerHTML = "";
-
-    Carrito.forEach(el => {
-        productosCarrito.innerHTML += `
-            <div class="producto">
-                <img src="${el.img}" alt="${el.nombre}" />
-                <h3>${el.nombre}</h3>
-                <p>Precio: $<span>${el.precio}</span></p>
-                <p>Cantidad: ${el.cantidad}</p>
-                <button class="botonesEliminar">Eliminar</button>
-            </div>
+    
+      productosFiltrados.forEach(producto => {
+        const productoDiv = document.createElement('div');
+        productoDiv.classList.add('producto');
+        productoDiv.innerHTML = `
+          <img src="${producto.img}" alt="${producto.nombre}">
+          <h3>${producto.nombre}</h3>
+          <p>$${producto.precio}</p>
+          <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
         `;
+        tarjetaContainer.appendChild(productoDiv);
+      });
+
+   
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-agregar')) {
+          const productoId = e.target.getAttribute('data-id');
+          agregarAlCarrito(productoId, productos);
+        }
+      });
     });
 
-    total.innerText = "Total: $" + Carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0);
-    carritoIcon.querySelector("#carritoCount").innerText = Carrito.reduce((acc, el) => acc + el.cantidad, 0);
-    localStorage.setItem("carrito", JSON.stringify(Carrito));
-
-    agregarEventosEliminar();
-}
-
-function agregarAlCarrito(idProducto) {
-    const producto = productosBijou.find(p => p.id == idProducto);
-    let productoEnCarrito = Carrito.find(p => p.id == producto.id);
+  
+  function agregarAlCarrito(productoId, productos) {
+    const producto = productos.find(p => p.id == productoId);
+    const productoEnCarrito = carrito.find(p => p.id == productoId);
 
     if (productoEnCarrito) {
-        productoEnCarrito.cantidad++;
+      productoEnCarrito.cantidad++;
+      Swal.fire({
+        title: '¡Cantidad actualizada!',
+        text: `La cantidad de "${producto.nombre}" se ha incrementado.`,
+        icon: 'info',
+        position: 'bottom-end',
+        timer: 2000,
+        customClass: {
+          popup: 'swal-popup',
+        },
+        confirmButtonText: 'Aceptar'
+      });
     } else {
-        Carrito.push({
-            id: producto.id,
-            nombre: producto.nombre,
-            img: producto.img,
-            precio: producto.precio,
-            cantidad: 1
-        });
+      carrito.push({ ...producto, cantidad: 1 });
+      Swal.fire({
+        icon: 'success',
+        title: '¡Producto agregado!',
+        text: 'El producto ha sido añadido a tu carrito.',
+        position: 'bottom-end',
+        toast: true,
+        showConfirmButton: false,
+        timer: 2000,
+        customClass: {
+          popup: 'swal-popup',
+        }
+      });
     }
 
     actualizarCarrito();
-}
+    mostrarModal();
+  }
 
-function agregarEventosEliminar() {
-    const botonesEliminar = document.querySelectorAll(".botonesEliminar");
+ 
+  function actualizarCarrito() {
+    const cantidadTotal = carrito.reduce((total, producto) => total + producto.cantidad, 0);
+    carritoCount.textContent = cantidadTotal; 
+  }
 
-    botonesEliminar.forEach(boton => {
-        boton.addEventListener("click", (evento) => {
-            const productoElement = evento.target.closest(".producto");
-            const productoNombre = productoElement.querySelector("h3").textContent;
-            let productoAEliminar = Carrito.find(el => el.nombre === productoNombre);
 
-            if (productoAEliminar.cantidad === 1) {
-                const index = Carrito.indexOf(productoAEliminar);
-                Carrito.splice(index, 1);
-            } else {
-                productoAEliminar.cantidad--;
-            }
+  function mostrarModal() {
+    modalContainer.style.display = 'flex';
+    const modalContent = document.querySelector('.modal-content');
+    
+    let totalCompra = 0;
+    modalContent.innerHTML = `
+      <h2>Tu Carrito</h2>
+      <div id="carritoItems">
+        ${carrito.map(producto => {
+          totalCompra += producto.precio * producto.cantidad;
+          return `
+            <div class="carrito-item">
+              <img src="${producto.img}" alt="${producto.nombre}">
+              <div class="item-info">
+                <h3>${producto.nombre}</h3>
+                <p>$${producto.precio} x ${producto.cantidad}</p>
+              </div>
+              <button class="btn-restar" data-id="${producto.id}">-</button>
+              <button class="btn-agregar" data-id="${producto.id}">+</button>
+              <button class="btn-quitar" data-id="${producto.id}">Quitar</button>
+            </div>
+          `;
+        }).join('')}
+      </div>
+      <div class="modal-footer">
+        <button class="btn-vaciar">Vaciar carrito</button>
+        <h3>Total: $${totalCompra}</h3>
+      </div>
+    `;
 
-            actualizarCarrito();
-        });
+    document.querySelectorAll('.btn-restar').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const productoId = e.target.getAttribute('data-id');
+        restarCantidad(productoId);
+      });
     });
-}
 
-function vaciarCarrito() {
-    Carrito.length = 0;
+    document.querySelectorAll('.btn-agregar').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const productoId = e.target.getAttribute('data-id');
+        agregarCantidad(productoId);
+      });
+    });
+
+    document.querySelectorAll('.btn-quitar').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const productoId = e.target.getAttribute('data-id');
+        quitarProducto(productoId);
+      });
+    });
+
+    document.querySelector('.btn-vaciar').addEventListener('click', vaciarCarrito);
+    modalCloseButton.addEventListener('click', () => {
+      modalContainer.style.display = 'none';
+    });
+  }
+
+
+  function restarCantidad(productoId) {
+    const producto = carrito.find(p => p.id == productoId);
+    if (producto.cantidad > 1) {
+      producto.cantidad--;
+      Swal.fire({
+        title: '¡Cantidad reducida!',
+        text: `La cantidad de "${producto.nombre}" ha sido reducida.`,
+        icon: 'info',
+        position: 'bottom-end',
+        timer: 2000,
+        customClass: {
+          popup: 'swal-popup',
+        },
+        confirmButtonText: 'Aceptar'
+      });
+    } else {
+      quitarProducto(productoId);
+      Swal.fire({
+        title: 'Producto eliminado',
+        text: `"${producto.nombre}" ha sido eliminado del carrito.`,
+        icon: 'warning',
+        position: 'bottom-end',
+        timer: 2000,
+        customClass: {
+          popup: 'swal-popup',
+        },
+        confirmButtonText: 'Aceptar'
+      });
+    }
     actualizarCarrito();
-};
+    mostrarModal();
+  }
 
-document.querySelectorAll(".productos_link-button").forEach(boton => {
-    boton.addEventListener("click", () => {
-        const idProducto = boton.closest(".productos_pulsera-collar").getAttribute("data-id");
-        agregarAlCarrito(idProducto);
+  function agregarCantidad(productoId) {
+    const producto = carrito.find(p => p.id == productoId);
+    producto.cantidad++;
+    Swal.fire({
+      title: 'Cantidad incrementada',
+      text: `La cantidad de "${producto.nombre}" ha sido incrementada.`,
+      icon: 'success',
+      position: 'bottom-end',
+      timer: 2000,
+      customClass: {
+        popup: 'swal-popup',
+      },
+      confirmButtonText: 'Aceptar'
     });
-});
+    actualizarCarrito();
+    mostrarModal();
+  }
 
-actualizarCarrito();
+  function quitarProducto(productoId) {
+    carrito = carrito.filter(p => p.id != productoId);
+    Swal.fire({
+      title: 'Producto eliminado',
+      text: `"${producto.nombre}" ha sido eliminado del carrito.`,
+      icon: 'error',
+      position: 'bottom-end',
+      timer: 2000,
+      customClass: {
+        popup: 'swal-popup',
+      },
+      confirmButtonText: 'Aceptar'
+    });
+    actualizarCarrito();
+    mostrarModal();
+  }
+
+  function vaciarCarrito() {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¿Quieres vaciar el carrito?",
+      icon: 'warning',
+      position: 'bottom-end',
+      timer: 2000,
+      customClass: {
+        popup: 'swal-popup',
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Sí, vaciar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        carrito = [];
+        actualizarCarrito();
+        mostrarModal();
+        Swal.fire({
+          title: 'Carrito vacío',
+          text: 'El carrito ha sido vaciado.',
+          icon: 'success',
+          position: 'bottom-end',
+          timer: 2000,
+          customClass: {
+            popup: 'swal-popup',
+          },
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
+  }
+
+  
+  carritoIcon.addEventListener('click', () => {
+    mostrarModal();
+  });
+
+  actualizarCarrito();
+});

@@ -1,0 +1,141 @@
+[
+    {
+        "id": 1,
+        "nombre": "Collar Plata",
+        "precio": 9000,
+        "img": "../img/Collar_Plata_1.jpg",
+        "categoria": "collar",
+        "cantidad": 10
+
+    },
+
+    {
+        "id": 2,
+        "nombre": "Collar Dorado",
+        "precio": 8000,
+        "img": "../img/Collar_Dorado_2.jpg",
+        "categoria": "collar",
+        "cantidad": 10
+
+    },
+
+    {
+        "id": 3,
+        "nombre": "Collar Gris",
+        "precio": 9000,
+        "img": "../img/Collar_Plata_1.jpg",
+        "categoria": "collar",
+        "cantidad": 10
+
+    },
+
+
+    {
+        "id": 4,
+        "nombre": "Collar Choker",
+        "precio": 8000,
+        "img": "../img/Collar_Choker_4.jpg",
+        "categoria": "collar",
+        "cantidad": 10
+
+    },
+
+
+
+    {
+        "id": 5,
+        "nombre": "Collar Multi",
+        "precio": 9000,
+        "img": "../img/Collar_Multi_5.jpg",
+        "categoria": "collar",
+        "cantidad": 10
+
+    },
+
+
+
+
+    {
+        "id": 6,
+        "nombre": "Collar Totem",
+        "precio": 8000,
+        "img": "../img/Collar_Totem_6.jpg",
+        "categoria": "collar",
+        "cantidad": 10
+
+    },
+
+
+
+    {
+        "id": 7,
+        "nombre": "Collar Aleatorio",
+        "precio": 9000,
+        "img": "../img/Collar_Varios_7.jpg",
+        "categoria": "collar",
+        "cantidad": 10
+
+    },
+
+
+    {
+        "id": 8,
+        "nombre": "Collar Arena",
+        "precio": 8000,
+        "img": "../img/Collar_Arena_8.jpg",
+        "categoria": "collar",
+        "cantidad": 10
+
+    },
+
+    {
+        "id": 9,
+        "nombre": "Pulsera Com",
+        "precio": 5000,
+        "img": "../img/Pulsera_Com_1.jpg",
+        "categoria": "pulsera",
+        "cantidad": 10
+
+    },
+    
+    {
+        "id": 10,
+        "nombre": "Pulsera Esla",
+        "precio": 4000,
+        "img": "../img/Pulsera_Esla_2.jpg",
+        "categoria": "pulsera",
+        "cantidad": 10
+
+    },
+
+    {
+        "id": 11,
+        "nombre": "Pulsera Dije",
+        "precio": 6000,
+        "img": "../img/Pulsera_Dije_3.jpg",
+        "categoria": "pulsera",
+        "cantidad": 10
+
+    },
+    
+    {
+        "id": 12,
+        "nombre": "Pulsera Arena",
+        "precio": 6000,
+        "img": "../img/Collar_Arena_8.jpg",
+        "categoria": "pulsera",
+        "cantidad": 10
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+]
