@@ -1,27 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
   let carrito = [];
-
   const carritoIcon = document.getElementById('carritoIcon');
   const carritoCount = document.getElementById('carritoCount');
   const modalContainer = document.getElementById('modalContainer');
   const tarjetaContainer = document.getElementById('tarjeta');
-  console.log(modalCloseButton);
   let filter = '';
 
- 
   if (document.location.pathname.includes('collares.html')) {
     filter = 'collar';
   } else if (document.location.pathname.includes('pulseras.html')) {
     filter = 'pulsera';
   }
 
-
   fetch('../data.json')
     .then(response => response.json())
     .then(productos => {
       const productosFiltrados = productos.filter(producto => producto.categoria === filter);
 
-    
       productosFiltrados.forEach(producto => {
         const productoDiv = document.createElement('div');
         productoDiv.classList.add('producto');
@@ -34,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
         tarjetaContainer.appendChild(productoDiv);
       });
 
-   
       document.addEventListener('click', (e) => {
         if (e.target.classList.contains('btn-agregar')) {
           const productoId = e.target.getAttribute('data-id');
@@ -43,9 +37,10 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
 
-  
   const agregarAlCarrito = (productoId, productos) => {
     const producto = productos.find(p => p.id == productoId);
+    if (!producto) return;
+
     const productoEnCarrito = carrito.find(p => p.id == productoId);
 
     if (productoEnCarrito) {
@@ -56,9 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
         icon: 'info',
         position: 'bottom-end',
         timer: 2000,
-        customClass: {
-          popup: 'swal-popup',
-        },
+        customClass: { popup: 'swal-popup' },
         confirmButtonText: 'Aceptar'
       });
     } else {
@@ -71,9 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
         toast: true,
         showConfirmButton: false,
         timer: 2000,
-        customClass: {
-          popup: 'swal-popup',
-        }
+        customClass: { popup: 'swal-popup' }
       });
     }
 
@@ -81,20 +72,11 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarModal();
   }
 
- 
   const actualizarCarrito = () => {
     const cantidadTotal = carrito.reduce((total, producto) => total + producto.cantidad, 0);
-    carritoCount.textContent = cantidadTotal; 
+    carritoCount.textContent = cantidadTotal;
   }
 
-  const modalCloseButton = document.querySelector('.modal-close');
-  if (modalCloseButton) {
-    modalCloseButton.addEventListener('click', () => {
-      modalContainer.style.display = 'none';
-    });
-  }
-  
-  
   const mostrarModal = () => {
     modalContainer.style.display = 'flex';
     const modalContent = document.querySelector('.modal-content');
@@ -147,78 +129,72 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.querySelector('.btn-vaciar').addEventListener('click', vaciarCarrito);
-    modalCloseButton.addEventListener('click', () => {
-      modalContainer.style.display = 'none';
-    });
   }
 
+  const agregarCantidad = (productoId) => {
+    const producto = carrito.find(p => p.id == productoId);
+    if (producto) {
+      producto.cantidad++;
+      Swal.fire({
+        text: `Agregaste otra vez "${producto.nombre}" a tu carrito`,
+        icon: 'success',
+        position: 'bottom-end',
+        timer: 2000,
+        customClass: { popup: 'swal-popup' },
+        confirmButtonText: 'Aceptar'
+      });
+      actualizarCarrito();
+      mostrarModal();
+    }
+  }
 
   const restarCantidad = (productoId) => {
     const producto = carrito.find(p => p.id == productoId);
-    if (producto.cantidad > 1) {
-      producto.cantidad--;
-      Swal.fire({
-        title: '¡Cantidad reducida!',
-        text: `La cantidad de "${producto.nombre}" ha sido reducida.`,
-        icon: 'info',
-        position: 'bottom-end',
-        timer: 2000,
-        customClass: {
-          popup: 'swal-popup',
-        },
-        confirmButtonText: 'Aceptar'
-      });
-    } else {
-      quitarProducto(productoId);
-      Swal.fire({
-        title: 'Producto eliminado',
-        text: `"${producto.nombre}" ha sido eliminado del carrito.`,
-        icon: 'warning',
-        position: 'bottom-end',
-        timer: 2000,
-        customClass: {
-          popup: 'swal-popup',
-        },
-        confirmButtonText: 'Aceptar'
-      });
+    if (producto) {
+      if (producto.cantidad > 1) {
+        producto.cantidad--;
+        Swal.fire({
+          title: '¡Cantidad reducida!',
+          text: `La cantidad de "${producto.nombre}" ha sido reducida.`,
+          icon: 'info',
+          position: 'bottom-end',
+          timer: 2000,
+          customClass: { popup: 'swal-popup' },
+          confirmButtonText: 'Aceptar'
+        });
+      } else {
+        quitarProducto(productoId);
+        Swal.fire({
+          title: 'Producto eliminado',
+          text: `"${producto.nombre}" ha sido eliminado del carrito.`,
+          icon: 'warning',
+          position: 'bottom-end',
+          timer: 2000,
+          customClass: { popup: 'swal-popup' },
+          confirmButtonText: 'Aceptar'
+        });
+      }
+      actualizarCarrito();
+      mostrarModal();
     }
-    actualizarCarrito();
-    mostrarModal();
-  }
-
-  const agregarCantidad = (productoId) =>{
-    const producto = carrito.find(p => p.id == productoId);
-    producto.cantidad++;
-    Swal.fire({
-      title: 'Cantidad incrementada',
-      text: `La cantidad de "${producto.nombre}" ha sido incrementada.`,
-      icon: 'success',
-      position: 'bottom-end',
-      timer: 2000,
-      customClass: {
-        popup: 'swal-popup',
-      },
-      confirmButtonText: 'Aceptar'
-    });
-    actualizarCarrito();
-    mostrarModal();
   }
 
   const quitarProducto = (productoId) => {
-    carrito = carrito.filter(p => p.id != productoId);
-    Swal.fire({
-      title: 'Producto eliminado',
-      text: `"${producto.nombre}" ha sido eliminado del carrito.`,
-      icon: 'error',
-      position: 'bottom-end',
-      timer: 2000,
-      customClass: {
-        popup: 'swal-popup',
-      },
-      confirmButtonText: 'Aceptar'
-    });
-    actualizarCarrito();
-    mostrarModal();
+    const producto = carrito.find(p => p.id == productoId);
+    if (producto) {
+      carrito = carrito.filter(p => p.id != productoId);
+      Swal.fire({
+        title: 'Producto eliminado',
+        text: `"${producto.nombre}" ha sido eliminado del carrito.`,
+        icon: 'error',
+        position: 'bottom-end',
+        timer: 2000,
+        customClass: { popup: 'swal-popup' },
+        confirmButtonText: 'Aceptar'
+      });
+      actualizarCarrito();
+      mostrarModal();
+    }
   }
 
   const vaciarCarrito = () => {
@@ -228,9 +204,7 @@ document.addEventListener("DOMContentLoaded", function() {
       icon: 'warning',
       position: 'bottom-end',
       timer: 2000,
-      customClass: {
-        popup: 'swal-popup',
-      },
+      customClass: { popup: 'swal-popup' },
       showCancelButton: true,
       confirmButtonText: 'Sí, vaciar',
       cancelButtonText: 'Cancelar'
@@ -245,16 +219,19 @@ document.addEventListener("DOMContentLoaded", function() {
           icon: 'success',
           position: 'bottom-end',
           timer: 2000,
-          customClass: {
-            popup: 'swal-popup',
-          },
+          customClass: { popup: 'swal-popup' },
           confirmButtonText: 'Aceptar',
         });
       }
     });
   };
 
-  
+  modalContainer.addEventListener('click', (e) => {
+    if (e.target === modalContainer) {
+      modalContainer.style.display = 'none';
+    }
+  });
+
   carritoIcon.addEventListener('click', () => {
     mostrarModal();
   });

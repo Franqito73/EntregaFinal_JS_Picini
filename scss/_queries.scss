@@ -27,6 +27,11 @@
   margin:20px;
   }
 
+  /*Modal*/
+  .modal-content {
+    width: 70%;
+    min-height: 350px; 
+  }
   // FORMULARIO Y MAPA
 
   .contenedor{
@@ -41,6 +46,8 @@
     }
   }
 }
+
+
 
 @media (max-width: 576px){
   // FORMULARIO Y MAPA
@@ -57,5 +64,11 @@
       width: 100%;
       align-items: center;
     }
+  }
+
+  /*Modal*/
+  .modal-content {
+    width: 90%;
+    min-height: 300px; 
   }
 }

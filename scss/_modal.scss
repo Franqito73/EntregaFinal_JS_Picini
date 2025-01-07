@@ -15,11 +15,11 @@
     background-color: $color-fondo;
     padding: 20px;
     border-radius: 10px;
-    width: 400px;
+    width: 600px;
     max-width: 90%;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 80vh; 
+    max-height: 90vh; 
     overflow-y: auto;
 
     h2 {
@@ -100,7 +100,7 @@
 
         p {
           margin: 0;
-          color: #555;
+          color: $color-info;
         }
       }
 
@@ -110,7 +110,7 @@
         padding: 8px 15px;
         margin: 0 5px;
         background-color: $color-panel;
-        color: #fff;
+        color: $color-fondo;
         border: none;
         border-radius: 5px;
         cursor: pointer;
