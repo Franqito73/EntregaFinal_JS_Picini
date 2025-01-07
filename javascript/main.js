@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const carritoIcon = document.getElementById('carritoIcon');
   const carritoCount = document.getElementById('carritoCount');
   const modalContainer = document.getElementById('modalContainer');
-  const modalCloseButton = document.querySelector('.modal-close'); 
   const tarjetaContainer = document.getElementById('tarjeta');
   console.log(modalCloseButton);
   let filter = '';
@@ -45,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
   
-  function agregarAlCarrito(productoId, productos) {
+  const agregarAlCarrito = (productoId, productos) => {
     const producto = productos.find(p => p.id == productoId);
     const productoEnCarrito = carrito.find(p => p.id == productoId);
 
@@ -83,13 +82,20 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
  
-  function actualizarCarrito() {
+  const actualizarCarrito = () => {
     const cantidadTotal = carrito.reduce((total, producto) => total + producto.cantidad, 0);
     carritoCount.textContent = cantidadTotal; 
   }
 
-
-  function mostrarModal() {
+  const modalCloseButton = document.querySelector('.modal-close');
+  if (modalCloseButton) {
+    modalCloseButton.addEventListener('click', () => {
+      modalContainer.style.display = 'none';
+    });
+  }
+  
+  
+  const mostrarModal = () => {
     modalContainer.style.display = 'flex';
     const modalContent = document.querySelector('.modal-content');
     
@@ -147,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 
-  function restarCantidad(productoId) {
+  const restarCantidad = (productoId) => {
     const producto = carrito.find(p => p.id == productoId);
     if (producto.cantidad > 1) {
       producto.cantidad--;
@@ -180,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarModal();
   }
 
-  function agregarCantidad(productoId) {
+  const agregarCantidad = (productoId) =>{
     const producto = carrito.find(p => p.id == productoId);
     producto.cantidad++;
     Swal.fire({
@@ -198,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarModal();
   }
 
-  function quitarProducto(productoId) {
+  const quitarProducto = (productoId) => {
     carrito = carrito.filter(p => p.id != productoId);
     Swal.fire({
       title: 'Producto eliminado',
@@ -215,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarModal();
   }
 
-  function vaciarCarrito() {
+  const vaciarCarrito = () => {
     Swal.fire({
       title: '¿Estás seguro?',
       text: "¿Quieres vaciar el carrito?",
@@ -242,11 +248,11 @@ document.addEventListener("DOMContentLoaded", function() {
           customClass: {
             popup: 'swal-popup',
           },
-          confirmButtonText: 'Aceptar'
+          confirmButtonText: 'Aceptar',
         });
       }
     });
-  }
+  };
 
   
   carritoIcon.addEventListener('click', () => {
